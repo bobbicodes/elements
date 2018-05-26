@@ -1,4 +1,4 @@
-(ns elements.core
+(ns reagent-tutorial.core
   (:require [clojure.string :as string]
             [reagent.core :as r]))
 
@@ -120,11 +120,9 @@
 (defn display-element [{:keys [id name] :as element}]
   (str id " " name))
 
-
 (defn element [c]
-  [:li
-   [:span (display-element c)]
-   ])
+[:li
+   [:span (display-element c)]])
 
 (defn element-list []
   [:div
