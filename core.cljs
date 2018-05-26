@@ -1,4 +1,4 @@
-(ns reagent-tutorial.core
+(ns elements.core
   (:require [clojure.string :as string]
             [reagent.core :as r]))
 
