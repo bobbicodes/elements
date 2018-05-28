@@ -1,8 +1,6 @@
 (ns elements.core
    (:require [reagent.core :as reagent :refer [atom]]))
 
-(enable-console-print!)
-
 (defn new-board [n]
   (vec (repeat n (vec (repeat n "B")))))
 
@@ -123,13 +121,13 @@
 {:id 108 :name "Hassium" :abb "Hs"}
 {:id 109 :name "Meitnerium" :abb "Mt"}])
 
-(def click-count (reagent/atom 1))
+(def click-count (atom 1))
 
 (defn buttons []
   [:div
-   [:input {:type "button" :value "Down"
+   [:input {:type "button" :value "Previous"
             :on-click #(swap! click-count dec)}]
-   [:input {:type "button" :value "Up"
+   [:input {:type "button" :value "Next"
             :on-click #(swap! click-count inc)}]])
 
 (defn tictactoe []
@@ -138,7 +136,8 @@
     [:h1 @click-count]
     [:h1 (:abb (elements (dec @click-count)))]
     [:h2 (:name (elements (dec @click-count)))]
-    [buttons]])
+    [buttons]
+    [:iframe {:src (str "https://en.wikipedia.org/wiki/" (:name (elements (dec @click-count)))) :width "1000" :height "2000"}]])
 
 (reagent/render-component [tictactoe]
                           (. js/document (getElementById "app")))
