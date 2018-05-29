@@ -1,2 +1,2 @@
 # elements
-Sample Reagent app. Displays atomic number, chemical name and abbreviation.
+Reagent app, displays atomic number, chemical name, abbreviation, embedded audio podcast from Chemistry World, image and Wikipedia article for each of the 118 elements.
