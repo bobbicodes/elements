@@ -135,9 +135,13 @@
 (defn buttons []
   [:div
    [:input {:type "button" :value "Previous"
-            :on-click #(swap! click-count dec)}]
+            :on-click #(if (= @click-count 1)
+                           (reset! click-count 118)
+                           (swap! click-count dec))}]
    [:input {:type "button" :value "Next"
-            :on-click #(swap! click-count inc)}]])
+            :on-click #(if (= @click-count 118)
+                           (reset! click-count 1)
+                           (swap! click-count inc))}]])
 
 (defn tictactoe []
   [:center
@@ -148,7 +152,7 @@
     [:audio {:controls true :src (str "http://www.rsc.org/periodic-table/content/podcasts/" (:name (elements (dec @click-count))) ".mp3?6.0.4.2")}]
     [buttons]
     [:img
- {:src (:img (elements (dec @click-count))) :height 400}]
+      {:src (:img (elements (dec @click-count))) :height 400}]
     [:iframe {:src (str "https://en.wikipedia.org/wiki/" (:name (elements (dec @click-count)))) :width "1200" :height "600"}]])
 
 (reagent/render-component [tictactoe]
