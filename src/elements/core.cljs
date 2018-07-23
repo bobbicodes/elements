@@ -143,7 +143,7 @@
                            (reset! click-count 1)
                            (swap! click-count inc))}]])
 
-(defn tictactoe []
+(defn app []
   [:center
    [:h1 (:text @app-state)]
     [:h1 @click-count]
@@ -155,7 +155,7 @@
       {:src (:img (elements (dec @click-count))) :height 400}]
     [:iframe {:src (str "https://en.wikipedia.org/wiki/" (:name (elements (dec @click-count)))) :width "1200" :height "600"}]])
 
-(reagent/render-component [tictactoe]
+(reagent/render-component [app]
                           (. js/document (getElementById "app")))
 
 (defn on-js-reload []
